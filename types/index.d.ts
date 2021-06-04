@@ -1,4 +1,4 @@
-import { Object3D } from 'three';
+import { Object3D } from "three";
 
 /**
  * Types
@@ -16,6 +16,7 @@ export interface Animation {
 
 export interface Callbacks {
   onClickMarker: MarkerCallback;
+  onTouchMarker: MarkerCallback;
   onDefocus: (previousFocus: Coordinates | null) => void;
   onGlobeBackgroundTextureLoaded: () => void;
   onGlobeCloudsTextureLoaded: () => void;
@@ -27,53 +28,53 @@ export interface Callbacks {
 export type Coordinates = [number, number];
 
 export type EasingFunction =
-  | ['Back', 'In']
-  | ['Back', 'Out']
-  | ['Back', 'InOut']
-  | ['Bounce', 'In']
-  | ['Bounce', 'Out']
-  | ['Bounce', 'InOut']
-  | ['Circular', 'In']
-  | ['Circular', 'Out']
-  | ['Circular', 'InOut']
-  | ['Cubic', 'In']
-  | ['Cubic', 'Out']
-  | ['Cubic', 'InOut']
-  | ['Elastic', 'In']
-  | ['Elastic', 'Out']
-  | ['Elastic', 'InOut']
-  | ['Linear', 'None']
-  | ['Exponential', 'In']
-  | ['Exponential', 'Out']
-  | ['Exponential', 'InOut']
-  | ['Quadratic', 'In']
-  | ['Quadratic', 'Out']
-  | ['Quadratic', 'InOut']
-  | ['Linear', 'None']
-  | ['Cubic', 'In']
-  | ['Cubic', 'Out']
-  | ['Cubic', 'InOut']
-  | ['Quartic', 'In']
-  | ['Quartic', 'Out']
-  | ['Quartic', 'InOut']
-  | ['Quintic', 'In']
-  | ['Quintic', 'Out']
-  | ['Quintic', 'InOut']
-  | ['Sinusoidal', 'In']
-  | ['Sinusoidal', 'Out']
-  | ['Sinusoidal', 'InOut']
-  | ['Exponential', 'In']
-  | ['Exponential', 'Out']
-  | ['Exponential', 'InOut']
-  | ['Circular', 'In']
-  | ['Circular', 'Out']
-  | ['Circular', 'InOut']
-  | ['Elastic', 'In']
-  | ['Elastic', 'Out']
-  | ['Elastic', 'InOut']
-  | ['Quadratic', 'In']
-  | ['Quadratic', 'Out']
-  | ['Quadratic', 'InOut'];
+  | ["Back", "In"]
+  | ["Back", "Out"]
+  | ["Back", "InOut"]
+  | ["Bounce", "In"]
+  | ["Bounce", "Out"]
+  | ["Bounce", "InOut"]
+  | ["Circular", "In"]
+  | ["Circular", "Out"]
+  | ["Circular", "InOut"]
+  | ["Cubic", "In"]
+  | ["Cubic", "Out"]
+  | ["Cubic", "InOut"]
+  | ["Elastic", "In"]
+  | ["Elastic", "Out"]
+  | ["Elastic", "InOut"]
+  | ["Linear", "None"]
+  | ["Exponential", "In"]
+  | ["Exponential", "Out"]
+  | ["Exponential", "InOut"]
+  | ["Quadratic", "In"]
+  | ["Quadratic", "Out"]
+  | ["Quadratic", "InOut"]
+  | ["Linear", "None"]
+  | ["Cubic", "In"]
+  | ["Cubic", "Out"]
+  | ["Cubic", "InOut"]
+  | ["Quartic", "In"]
+  | ["Quartic", "Out"]
+  | ["Quartic", "InOut"]
+  | ["Quintic", "In"]
+  | ["Quintic", "Out"]
+  | ["Quintic", "InOut"]
+  | ["Sinusoidal", "In"]
+  | ["Sinusoidal", "Out"]
+  | ["Sinusoidal", "InOut"]
+  | ["Exponential", "In"]
+  | ["Exponential", "Out"]
+  | ["Exponential", "InOut"]
+  | ["Circular", "In"]
+  | ["Circular", "Out"]
+  | ["Circular", "InOut"]
+  | ["Elastic", "In"]
+  | ["Elastic", "Out"]
+  | ["Elastic", "InOut"]
+  | ["Quadratic", "In"]
+  | ["Quadratic", "Out"]
+  | ["Quadratic", "InOut"];
 
 export interface Marker {
   /** Any other custom fields. */
@@ -172,7 +173,7 @@ export interface Options {
   /** Callback to render the tooltip string content based on the marker data. */
   markerTooltipRenderer: (marker: Marker) => string;
   /** If a valid type is passed, ReactGlobe will render the supported marker type. */
-  markerType: 'dot' | 'bar';
+  markerType: "dot" | "bar";
   /** Point light color. */
   pointLightColor: string;
   /** Point light intensity. */
@@ -211,6 +212,8 @@ export interface Props {
   width?: string | number;
   /** Callback to handle click events of a marker.  Captures the clicked marker, ThreeJS object and pointer event. */
   onClickMarker?: MarkerCallback;
+  /** Callback to handle touch events of a marker.  Captures the touched marker, ThreeJS object and pointer event. */
+  onTouchMarker?: MarkerCallback;
   /** Callback to handle defocus events (i.e. clicking the globe after a focus has been applied).  Captures the previously focused coordinates. */
   onDefocus?: (previousFocus: Coordinates) => void;
   /** Capture the initialized globe instance */
@@ -319,11 +322,11 @@ export const defaultOptions: Options;
 export const defaultDotMarkerOptions: {
   enableMarkerGlow: boolean;
   markerRadiusScaleRange: MinMaxPair;
-  markerType: 'dot';
+  markerType: "dot";
 };
 
 export const defaultBarMarkerOptions: {
   enableMarkerGlow: boolean;
   markerRadiusScaleRange: MinMaxPair;
-  markerType: 'bar';
+  markerType: "bar";
 };

@@ -27,11 +27,11 @@ Note that `react-globe` requires `react >= 16.13.1` and `three >= 0.118.3` as pe
 Render a simple interactive globe with a single line of code!
 
 ```js
-import React from 'react';
-import ReactGlobe from 'react-globe';
+import React from "react";
+import ReactGlobe from "react-globe";
 
 function SimpleGlobe() {
-  return <ReactGlobe />
+  return <ReactGlobe />;
 }
 ```
 
@@ -40,55 +40,55 @@ function SimpleGlobe() {
 An example showing various features (markers, tooltips, options, callbacks, textures).
 
 ```js
-import React, { useState } from 'react';
-import ReactGlobe from 'react-globe';
+import React, { useState } from "react";
+import ReactGlobe from "react-globe";
 
 // import optional tippy styles for tooltip support
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/scale.css";
 
 function MyGlobe() {
   // support rendering markers with simple data
   const markers = [
     {
-      id: 'marker1',
-      city: 'Singapore',
-      color: 'red',
+      id: "marker1",
+      city: "Singapore",
+      color: "red",
       coordinates: [1.3521, 103.8198],
       value: 50,
     },
     {
-      id: 'marker2',
-      city: 'New York',
-      color: 'blue',
+      id: "marker2",
+      city: "New York",
+      color: "blue",
       coordinates: [40.73061, -73.935242],
       value: 25,
     },
     {
-      id: 'marker3',
-      city: 'San Francisco',
-      color: 'orange',
+      id: "marker3",
+      city: "San Francisco",
+      color: "orange",
       coordinates: [37.773972, -122.431297],
       value: 35,
     },
     {
-      id: 'marker4',
-      city: 'Beijing',
-      color: 'gold',
+      id: "marker4",
+      city: "Beijing",
+      color: "gold",
       coordinates: [39.9042, 116.4074],
       value: 135,
     },
     {
-      id: 'marker5',
-      city: 'London',
-      color: 'green',
+      id: "marker5",
+      city: "London",
+      color: "green",
       coordinates: [51.5074, 0.1278],
       value: 80,
     },
     {
-      id: 'marker6',
-      city: 'Los Angeles',
-      color: 'gold',
+      id: "marker6",
+      city: "Los Angeles",
+      color: "gold",
       coordinates: [29.7604, -95.3698],
       value: 54,
     },
@@ -96,14 +96,14 @@ function MyGlobe() {
 
   // simple and extensive options to configure globe
   const options = {
-    ambientLightColor: 'red',
+    ambientLightColor: "red",
     cameraRotateSpeed: 0.5,
     focusAnimationDuration: 2000,
-    focusEasingFunction: ['Linear', 'None'],
-    pointLightColor: 'gold',
+    focusEasingFunction: ["Linear", "None"],
+    pointLightColor: "gold",
     pointLightIntensity: 1.5,
-    globeGlowColor: 'blue',
-    markerTooltipRenderer: marker => `${marker.city} (${marker.value})`,
+    globeGlowColor: "blue",
+    markerTooltipRenderer: (marker) => `${marker.city} (${marker.value})`,
   };
 
   const [globe, setGlobe] = useState(null);
@@ -120,13 +120,22 @@ function MyGlobe() {
       markers={markers}
       options={options}
       width="100%"
-      onClickMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
+      onClickMarker={(marker, markerObject, event) =>
+        console.log(marker, markerObject, event)
+      }
       onGetGlobe={setGlobe}
-      onMouseOutMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
-      onGlobeTextureLoaded={() => console.log('globe loaded')}
-      onMouseOverMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
-    >
-  )
+      onTouchMarker={(marker, markerObject, event) =>
+        console.log(marker, markerObject, event)
+      }
+      onMouseOutMarker={(marker, markerObject, event) =>
+        console.log(marker, markerObject, event)
+      }
+      onGlobeTextureLoaded={() => console.log("globe loaded")}
+      onMouseOverMarker={(marker, markerObject, event) =>
+        console.log(marker, markerObject, event)
+      }
+    />
+  );
 }
 ```
 

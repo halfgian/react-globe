@@ -1,11 +1,19 @@
 # Change Log
 
+## [5.0.3t](https://github.com/chrisrzhou/react-globe/compare/v5.0.3...v5.0.2) (2020-12-31)
+
+Small enhancement.
+Add onTouch event for mobile use.
+| Status | Old | New |
+| --- | --- | --- |
+| added | | `onTouchMarker` |
+
 ## [5.0.2](https://github.com/chrisrzhou/react-globe/compare/v5.0.2...v5.0.1) (2020-08-08)
 
 Various bugfixes.
 
-- Fixed bug to allow `cameraDistanceRadiusScale` to affect the initial globe camera distance.  This prop has the same exact behavior as `initialCameraDistanceRadiusScale`, which is now reserved as a useful semantic prop alias.
-- Fixed bug where the globe's glow was not removed when `options` is updated.  This led to creation and attachment of increasing amounts of glow meshes, and also not honoring the `enableGlobeGlow` prop.
+- Fixed bug to allow `cameraDistanceRadiusScale` to affect the initial globe camera distance. This prop has the same exact behavior as `initialCameraDistanceRadiusScale`, which is now reserved as a useful semantic prop alias.
+- Fixed bug where the globe's glow was not removed when `options` is updated. This led to creation and attachment of increasing amounts of glow meshes, and also not honoring the `enableGlobeGlow` prop.
 - Remove `console.log`
 - Increase `cameraMaxDistanceRadiusScale` default value to better support the `initialCameraDistanceRadiusScale` prop.
 - Add names to three objects for easier development/debugging.
@@ -19,6 +27,7 @@ Add `delay` support to exported `tween` utility.
 Refactoring and simplification of codebase and exposed public APIs.
 
 ### Changes
+
 - New props (see section below).
 - Flattened `options` prop (improves and simplifies component rendering lifecycle with hooks).
 - Improved `Globe` instance support.
@@ -33,109 +42,109 @@ Refactoring and simplification of codebase and exposed public APIs.
 ### Breaking Changes
 
 #### Named Exports
+
 Only the `Globe` class, `ReactGlobe` component, `defaultCallbacks`, `defaultInitialCoordinates`, `defaultOptions`, and `tween` util are now exported to limit the exposed public API.
 
 #### Types
-Various exported types have changed.  The new types form a smaller and simplified set.
+
+Various exported types have changed. The new types form a smaller and simplified set.
 
 #### Props
 
-Various props are replaced, updated (interface updates), removed, or unchanged.  The following table tracks the status of old vs new props.
+Various props are replaced, updated (interface updates), removed, or unchanged. The following table tracks the status of old vs new props.
 
-| Status | Old | New |
-| --- | --- | --- |
-| updated | `animations` | `animations` |
-| updated | `onDefocus` | `onDefocus` |
-| replaced | ~~`cameraOptions`~~ | `options` |
-| replaced | ~~`focusOptions`~~ | `options` |
-| replaced | ~~`globeOptions`~~ | `options` |
-| replaced | ~~`lightOptions`~~ | `options` |
-| replaced | ~~`markerOptions`~~ | `options` |
-| replaced | ~~`size`~~ | `height`, `width` |
-| unchanged | `focus` | `focus` |
-| unchanged | `initialCoordinates` | `initialCoordinates` |
-| unchanged | `markers` | `markers` |
-| unchanged | `onClickMarker` | `onClickMarker` |
-| unchanged | `onMouseOutMarker` | `onMouseOutMarker` |
-| unchanged | `onMouseOverMarker` | `onMouseOverMarker` |
-| renamed | `onGetGlobeInstance` | `onGetGlobe` |
-| renamed | `onTextureLoaded` | `onGlobeTextureLoaded` |
-| added | | `globeBackgroundTexture` |
-| added | | `globeCloudsTexture` |
-| added | | `globeTexture` |
-| added | | `onGlobeBackgroundTextureLoaded` |
-| added | | `onGlobeCloudsTextureLoaded` |
+| Status    | Old                  | New                              |
+| --------- | -------------------- | -------------------------------- |
+| updated   | `animations`         | `animations`                     |
+| updated   | `onDefocus`          | `onDefocus`                      |
+| replaced  | ~~`cameraOptions`~~  | `options`                        |
+| replaced  | ~~`focusOptions`~~   | `options`                        |
+| replaced  | ~~`globeOptions`~~   | `options`                        |
+| replaced  | ~~`lightOptions`~~   | `options`                        |
+| replaced  | ~~`markerOptions`~~  | `options`                        |
+| replaced  | ~~`size`~~           | `height`, `width`                |
+| unchanged | `focus`              | `focus`                          |
+| unchanged | `initialCoordinates` | `initialCoordinates`             |
+| unchanged | `markers`            | `markers`                        |
+| unchanged | `onClickMarker`      | `onClickMarker`                  |
+| unchanged | `onMouseOutMarker`   | `onMouseOutMarker`               |
+| unchanged | `onMouseOverMarker`  | `onMouseOverMarker`              |
+| renamed   | `onGetGlobeInstance` | `onGetGlobe`                     |
+| renamed   | `onTextureLoaded`    | `onGlobeTextureLoaded`           |
+| added     |                      | `globeBackgroundTexture`         |
+| added     |                      | `globeCloudsTexture`             |
+| added     |                      | `globeTexture`                   |
+| added     |                      | `onGlobeBackgroundTextureLoaded` |
+| added     |                      | `onGlobeCloudsTextureLoaded`     |
 
-#### Options 
+#### Options
 
-`react-globe` provides useful and convenient configurations to customize the globe.  These configurations still exist, but are managed in a flat `options` object.  This allows easier code/documentation management of globe configuration.
+`react-globe` provides useful and convenient configurations to customize the globe. These configurations still exist, but are managed in a flat `options` object. This allows easier code/documentation management of globe configuration.
 
 Most options are renamed in an organized way that allows easy refactoring.
 
-| Status | Old | New |
-| --- | --- | --- |
-| removed | ~~`globeOptions.enableBackground`~~ | |
-| removed | ~~`globeOptions.enableClouds`~~ | |
-| removed | `markerOptions.activeScale` |  |
-| renamed | `cameraOptions.autoRotateSpeed` | `options.cameraAutoRotateSpeed` |
-| renamed | `cameraOptions.distanceRadiusScale` | `options.cameraDistanceRadiusScale` |
-| renamed | `cameraOptions.enableAutoRotate` | `options.enableCameraAutoRotate` |
-| renamed | `cameraOptions.enableRotate` | `options.enableCameraRotate` |
-| renamed | `cameraOptions.enableZoom` | `options.enableCameraZoom` |
-| renamed | `cameraOptions.maxDistanceRadiusScale` | `options.cameraMaxDistanceRadiusScale` |
-| renamed | `cameraOptions.maxPolarAngle` | `options.cameraMaxPolarAngle` |
-| renamed | `cameraOptions.minPolarAngle` | `options.cameraMinPolarAngle` |
-| renamed | `cameraOptions.rotateSpeed` | `options.cameraRotateSpeed` |
-| renamed | `cameraOptions.zoomSpeed` | `options.cameraZoomSpeed` |
-| renamed | `focusOptions.animationDuration` | `options.focusAnimationDuration` |
-| renamed | `focusOptions.distanceRadiusScale` | `options.focusDistanceRadiusScale` |
-| renamed | `focusOptions.easingFunction` | `options.focusEasingFunction` |
-| renamed | `focusOptions.enableDefocus` | `options.enableDefocus` |
-| renamed | `globeOptions.backgroundTexture` | `options.globeBackgroundTexture` |
-| renamed | `globeOptions.cloudsOpacity` | `options.globeCloudsOpacity` |
-| renamed | `globeOptions.cloudsTexture` | `options.globeCloudsTexture` |
-| renamed | `globeOptions.enableGlow` | `options.enableGlobeGlow` |
-| renamed | `globeOptions.glowCoefficient` | `options.globeGlowCoefficient` |
-| renamed | `globeOptions.glowColor` | `options.globeGlowColor` |
-| renamed | `globeOptions.glowPower` | `options.globeGlowPower` |
-| renamed | `globeOptions.glowRadiusScale` | `options.globeGlowRadiusScale` |
-| renamed | `globeOptions.texture` | `options.globeTexture` |
-| renamed | `lightOptions.ambientLightColor` | `options.ambientLightColor` |
-| renamed | `lightOptions.ambientLightIntensity` | `options.ambientLightIntensity` |
-| renamed | `lightOptions.pointLightColor` | `options.pointLightColor` |
-| renamed | `lightOptions.pointLightIntensity` | `options.pointLightIntensity` |
+| Status  | Old                                           | New                                      |
+| ------- | --------------------------------------------- | ---------------------------------------- |
+| removed | ~~`globeOptions.enableBackground`~~           |                                          |
+| removed | ~~`globeOptions.enableClouds`~~               |                                          |
+| removed | `markerOptions.activeScale`                   |                                          |
+| renamed | `cameraOptions.autoRotateSpeed`               | `options.cameraAutoRotateSpeed`          |
+| renamed | `cameraOptions.distanceRadiusScale`           | `options.cameraDistanceRadiusScale`      |
+| renamed | `cameraOptions.enableAutoRotate`              | `options.enableCameraAutoRotate`         |
+| renamed | `cameraOptions.enableRotate`                  | `options.enableCameraRotate`             |
+| renamed | `cameraOptions.enableZoom`                    | `options.enableCameraZoom`               |
+| renamed | `cameraOptions.maxDistanceRadiusScale`        | `options.cameraMaxDistanceRadiusScale`   |
+| renamed | `cameraOptions.maxPolarAngle`                 | `options.cameraMaxPolarAngle`            |
+| renamed | `cameraOptions.minPolarAngle`                 | `options.cameraMinPolarAngle`            |
+| renamed | `cameraOptions.rotateSpeed`                   | `options.cameraRotateSpeed`              |
+| renamed | `cameraOptions.zoomSpeed`                     | `options.cameraZoomSpeed`                |
+| renamed | `focusOptions.animationDuration`              | `options.focusAnimationDuration`         |
+| renamed | `focusOptions.distanceRadiusScale`            | `options.focusDistanceRadiusScale`       |
+| renamed | `focusOptions.easingFunction`                 | `options.focusEasingFunction`            |
+| renamed | `focusOptions.enableDefocus`                  | `options.enableDefocus`                  |
+| renamed | `globeOptions.backgroundTexture`              | `options.globeBackgroundTexture`         |
+| renamed | `globeOptions.cloudsOpacity`                  | `options.globeCloudsOpacity`             |
+| renamed | `globeOptions.cloudsTexture`                  | `options.globeCloudsTexture`             |
+| renamed | `globeOptions.enableGlow`                     | `options.enableGlobeGlow`                |
+| renamed | `globeOptions.glowCoefficient`                | `options.globeGlowCoefficient`           |
+| renamed | `globeOptions.glowColor`                      | `options.globeGlowColor`                 |
+| renamed | `globeOptions.glowPower`                      | `options.globeGlowPower`                 |
+| renamed | `globeOptions.glowRadiusScale`                | `options.globeGlowRadiusScale`           |
+| renamed | `globeOptions.texture`                        | `options.globeTexture`                   |
+| renamed | `lightOptions.ambientLightColor`              | `options.ambientLightColor`              |
+| renamed | `lightOptions.ambientLightIntensity`          | `options.ambientLightIntensity`          |
+| renamed | `lightOptions.pointLightColor`                | `options.pointLightColor`                |
+| renamed | `lightOptions.pointLightIntensity`            | `options.pointLightIntensity`            |
 | renamed | `lightOptions.pointLightPositionRadiusScales` | `options.pointLightPositionRadiusScales` |
-| renamed | `markerOptions.enableGlow` | `options.enableMarkerGlow` |
-| renamed | `markerOptions.enableTooltip` | `options.enableMarkerTooltip` |
-| renamed | `markerOptions.enterAnimationDuration` | `options.markerEnterAnimationDuration` |
-| renamed | `markerOptions.enterEasingFunction` | `options.markerEnterEasingFunction` |
-| renamed | `markerOptions.exitAnimationDuration` | `options.markerExitAnimationDuration` |
-| renamed | `markerOptions.exitEasingFunction` | `options.markerExitEasingFunction` |
-| renamed | `markerOptions.getTooltipContent` | `options.markerTooltipRenderer` |
-| renamed | `markerOptions.glowCoefficient` | `options.markerGlowCoefficient` |
-| renamed | `markerOptions.glowPower` | `options.markerGlowPower` |
-| renamed | `markerOptions.glowRadiusScale` | `options.markerGlowRadiusScale` |
-| renamed | `markerOptions.offsetRadiusScale` | `options.markerOffsetRadiusScale` |
-| renamed | `markerOptions.radiusScaleRange` | `options.markerRadiusScaleRange` |
-| renamed | `markerOptions.renderer` | `options.markerRenderer` |
-| renamed | `markerOptions.type` | `options.markerType` |
+| renamed | `markerOptions.enableGlow`                    | `options.enableMarkerGlow`               |
+| renamed | `markerOptions.enableTooltip`                 | `options.enableMarkerTooltip`            |
+| renamed | `markerOptions.enterAnimationDuration`        | `options.markerEnterAnimationDuration`   |
+| renamed | `markerOptions.enterEasingFunction`           | `options.markerEnterEasingFunction`      |
+| renamed | `markerOptions.exitAnimationDuration`         | `options.markerExitAnimationDuration`    |
+| renamed | `markerOptions.exitEasingFunction`            | `options.markerExitEasingFunction`       |
+| renamed | `markerOptions.getTooltipContent`             | `options.markerTooltipRenderer`          |
+| renamed | `markerOptions.glowCoefficient`               | `options.markerGlowCoefficient`          |
+| renamed | `markerOptions.glowPower`                     | `options.markerGlowPower`                |
+| renamed | `markerOptions.glowRadiusScale`               | `options.markerGlowRadiusScale`          |
+| renamed | `markerOptions.offsetRadiusScale`             | `options.markerOffsetRadiusScale`        |
+| renamed | `markerOptions.radiusScaleRange`              | `options.markerRadiusScaleRange`         |
+| renamed | `markerOptions.renderer`                      | `options.markerRenderer`                 |
+| renamed | `markerOptions.type`                          | `options.markerType`                     |
 
 #### `Globe` instance
 
-As mentioned in the `v4.0.0` docs, the `Globe` instance APIs are unstable and not formally maintained.  The `Globe` class instance is now managed through a new set of class methods, and the old methods are no longer compatible.
+As mentioned in the `v4.0.0` docs, the `Globe` instance APIs are unstable and not formally maintained. The `Globe` class instance is now managed through a new set of class methods, and the old methods are no longer compatible.
 
 `v5.0.0` introduces more formal support for the `Globe` instance.
 
 #### `CSS`
 
-Tooltip (`tippy`) CSS is no longer bundled with the project.  You can optionally import it with:
+Tooltip (`tippy`) CSS is no longer bundled with the project. You can optionally import it with:
 
 ```js
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/scale.css";
 ```
-
-
 
 ## [4.0.0](https://github.com/chrisrzhou/react-globe/compare/v3.1.1...v4.0.0) (2019-10-17)
 

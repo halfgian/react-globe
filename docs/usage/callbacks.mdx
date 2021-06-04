@@ -4,11 +4,11 @@ menu: Usage
 route: /usage/callbacks
 ---
 
-import { Playground } from 'docz';
-import { useState } from 'react';
+import { Playground } from "docz";
+import { useState } from "react";
 
-import markers from './markers';
-import ReactGlobe from './react-globe';
+import markers from "./markers";
+import ReactGlobe from "./react-globe";
 
 # Callbacks
 
@@ -22,6 +22,16 @@ import ReactGlobe from './react-globe';
     function onClickMarker(marker, markerObject, event) {
       setEvent({
         type: 'CLICK',
+        marker,
+        markerObjectID: markerObject.uuid,
+        pointerEventPosition: { x: event.clientX, y: event.clientY },
+      });
+      setDetails(`City: ${marker.city} (Sales: ${marker.value}.0M)`);
+    }
+
+    function onTouchMarker(marker, markerObject, event) {
+      setEvent({
+        type: 'TOUCHSTART',
         marker,
         markerObjectID: markerObject.uuid,
         pointerEventPosition: { x: event.clientX, y: event.clientY },
@@ -60,6 +70,7 @@ import ReactGlobe from './react-globe';
         <ReactGlobe
           onClickMarker={onClickMarker}
           onDefocus={onDefocus}
+          onTouchMarker={onTouchMarker}
           onMouseOutMarker={onMouseOutMarker}
           onMouseOverMarker={onMouseOverMarker}
           markers={markers}
@@ -89,5 +100,7 @@ import ReactGlobe from './react-globe';
         )}
       </div>
     );
-  }}
+
+}}
+
 </Playground>
