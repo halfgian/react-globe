@@ -54,13 +54,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "style-loader": "^1.2.1",
-    "three": "^0.119.1",
+    "three": "^0.109.0",
     "typescript": "^3.8.3",
     "xo": "^0.32.1"
   },
   "peerDependencies": {
     "react": ">= 16.13.1",
-    "three": ">= 0.118.3"
+    "three": "^0.109.0",
   },
   "husky": {
     "hooks": {
