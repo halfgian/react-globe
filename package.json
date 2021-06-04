@@ -60,7 +60,7 @@
   },
   "peerDependencies": {
     "react": ">= 16.13.1",
-    "three": "^0.109.0",
+    "three": "^0.109.0"
   },
   "husky": {
     "hooks": {
